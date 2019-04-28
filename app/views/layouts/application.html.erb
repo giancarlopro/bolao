@@ -10,8 +10,16 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
+    <nav id="main-nav" class="navbar navbar-expand-md navbar-dark bg-primary">
+      <div class="container d-flex justify-content-center">
+        <a href="<%= root_path %>" class="navbar-brand">Bolão</a>
+      </div>
+    </nav>
+
+    <main class="container">
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+      <%= yield %>
+    </main>
   </body>
 </html>

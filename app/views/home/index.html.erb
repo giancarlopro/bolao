@@ -1,3 +1,23 @@
-<% @boloes.each do |bolao| %>
-  <%= bolao %>
-<% end %>
+<div class="card">
+  <div class="card-header d-flex justify-content-center">
+    Bolões
+  </div>
+  <div class="card-body">
+    <table class="table">
+      <thead class="thead-dark">
+        <th>#</th>
+        <th colspan="3">Nome</th>
+        <th>Ações</th>
+      </thead>
+      <tbody>
+        <% @boloes.each do |bolao| %>
+          <tr>
+            <td><%= bolao.id %></td>
+            <td colspan="3"><%= bolao.nome %></td>
+            <td><%= link_to 'Participar', {controller: 'participacoes', action: 'new', bolao_id: bolao.id } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
