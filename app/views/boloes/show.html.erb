@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nome:</strong>
+  <%= @bolao.nome %>
+</p>
+
+<p>
+  <strong>Ativo:</strong>
+  <%= @bolao.ativo %>
+</p>
+
+<%= link_to 'Edit', edit_bolao_path(@bolao) %> |
+<%= link_to 'Back', boloes_path %>
