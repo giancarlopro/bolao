@@ -1,29 +1,25 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Boloes</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Nome</th>
-      <th>Ativo</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @boloes.each do |bolao| %>
-      <tr>
-        <td><%= bolao.nome %></td>
-        <td><%= bolao.ativo %></td>
-        <td><%= link_to 'Show', bolao %></td>
-        <td><%= link_to 'Edit', edit_bolao_path(bolao) %></td>
-        <td><%= link_to 'Destroy', bolao, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Bolao', new_bolao_path %>
+<div class="card">
+  <div class="card-header d-flex justify-content-center">
+    Bolões
+  </div>
+  <div class="card-body">
+    <table class="table">
+      <thead class="thead-dark">
+        <th>#</th>
+        <th>Nome</th>
+        <th colspan="2">Ações</th>
+      </thead>
+      <tbody>
+        <% @boloes.each do |bolao| %>
+          <tr>
+            <td><%= bolao.id %></td>
+            <td><%= bolao.nome %></td>
+            <td><%= link_to 'Visualizar', bolao_path(bolao) %></td>
+            <td><%= link_to 'Editar', edit_bolao_path(bolao) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%= link_to 'Novo', new_bolao_path, class: 'btn btn-success' %>
+  </div>
+</div>

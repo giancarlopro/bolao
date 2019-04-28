@@ -11,17 +11,22 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :nome %>
-    <%= form.text_field :nome %>
+  <div class="form-group row">
+    <%= form.label :nome, class: 'col-sm-2' %>
+    <div class="col-sm-10">
+      <%= form.text_field :nome, class: 'form-control' %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :ativo %>
-    <%= form.check_box :ativo %>
+  <div class="form-group row">
+    <%= form.label :ativo, class: 'col-sm-2' %>
+    <div class="col-sm-10">
+      <%= form.check_box :ativo %>
+    </div>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="d-flex justify-content-between">
+    <%= form.submit 'Salvar', class: 'btn btn-success' %>
+    <%= link_to 'Voltar', boloes_path, class: 'btn btn-primary' %>
   </div>
 <% end %>
