@@ -1,0 +1,36 @@
+<%= form_tag bolao_define_path(bolao), id: 'formu', method: :post do %>
+  <% if bolao.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(bolao.errors.count, "error") %> prohibited this bolao from being saved:</h2>
+
+      <ul>
+      <% bolao.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= hidden_field_tag 'bolao[nome]', bolao.nome %>
+  <%= hidden_field_tag 'bolao[ativo]', bolao.ativo %>
+
+  <div id="palpites">
+    <% @palpites.each_with_index do |palpite, i| %>
+      <%= render 'template_palpite', template: false, palpite: palpite, i: i %>
+    <% end %>
+  </div>
+
+  <div class="d-flex justify-content-center">
+    <a href="#" class="btn btn-info m-1 add-palpite-btn">Adicionar Pergunta</a>
+    <%= submit_tag 'Salvar Perguntas', class: 'btn btn-success m-1' %>
+    <%= link_to 'Voltar', boloes_path, class: 'btn btn-primary m-1' %>
+  </div>
+<% end %>
+
+<!-- Template Opções -->
+<template id="template-opcao">
+  <%= render 'template_opcao', template: true %>
+</template>
+
+<template id="template-palpite">
+  <%= render 'template_palpite', template: true %>
+</template>

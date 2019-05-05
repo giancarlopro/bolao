@@ -1,5 +1,6 @@
 class BoloesController < ApplicationController
   before_action :set_bolao, only: [:show, :edit, :update, :destroy]
+  before_action :set_bolao_define, only: [:define, :save_definition]
 
   # GET /boloes
   # GET /boloes.json
@@ -61,6 +62,32 @@ class BoloesController < ApplicationController
     end
   end
 
+  # GET /boloes/1/define
+  def define
+    @palpites = Palpite.where(bolao_id: @bolao.id)
+  end
+
+  # POST /boloes/1/define
+  def save_definition
+    respond_to do |format|
+      Palpite.clear(@bolao.id)
+      params[:palpites].each do |palpite|
+        palpite_db = Palpite.create(pergunta: palpite[:pergunta], tipo: palpite[:tipo], bolao_id: @bolao.id)
+        if palpite_db
+          palpite[:opcoes].each do |opcao|
+            Opcao.create(valor: opcao[:valor], correta: opcao.try(:[], :correta), palpite_id: palpite_db.id)
+          end
+
+          format.html { redirect_to bolao_define_url(@bolao), notice: 'Bolao was successfully destroyed.' }
+          format.json { head :no_content }
+        else
+          format.html { redirect_to bolao_define_url(@bolao), notice: 'Bolao was successfully destroyed.' }
+          format.json { head :no_content }
+        end
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_bolao
@@ -70,5 +97,13 @@ class BoloesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def bolao_params
       params.require(:bolao).permit(:nome, :ativo)
+    end
+
+    def set_bolao_define
+      @bolao = Bolao.find(params[:bolao_id])
+    end
+
+    def bolao_define_params
+      params.require(:palpites).permit()
     end
 end

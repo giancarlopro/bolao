@@ -1,0 +1,18 @@
+<% if template %>
+  <% opcao_id = 'OPCAO_ID' %>
+  <% opcao = {palpite: {id: "local_#{rand(100)}"}, valor: '', correta: false} %>
+<% else %>
+  <% opcao_id = "#{j+1}" %>
+<% end %>
+<div class="opcao">
+  <div class="form-group row">
+    <label for="opcao_<%= opcao.try(:palpite).try(:id) %>_<%= opcao_id %>_valor" class="col-sm-2">Opção <%= opcao_id %>:</label>
+    <div class="col-sm-4">
+      <input type="text" value="<%= opcao[:valor] %>" name="palpites[][opcoes][][valor]" id="opcao_<%= opcao.try(:palpite).try(:id) %>_<%= opcao_id %>_valor" class="form-control">
+    </div>
+    <label for="opcao_<%= opcao.try(:palpite).try(:id) %>_<%= opcao_id %>_correta" class="col-sm-2">Correta?:</label>
+    <div class="col-sm-4">
+      <input type="checkbox" <%= "checked" if opcao[:correta] %> id="opcao_<%= opcao.try(:palpite).try(:id) %>_<%= opcao_id %>_correta" name="palpites[][opcoes][][correta]">
+    </div>
+  </div>
+</div>

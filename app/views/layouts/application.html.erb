@@ -17,8 +17,17 @@
     </nav>
 
     <main class="container">
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
+      <br>
+      <% if notice %>
+        <div class="alert alert-success m1" role="alert">
+          <%= notice %>
+        </div>
+      <% end %>
+      <% if alert %>
+        <div class="alert alert-warning" role="alert">
+          <%= alert %>
+        </div>
+      <% end %>
       <%= yield %>
     </main>
   </body>
