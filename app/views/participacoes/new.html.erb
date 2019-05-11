@@ -1,5 +1,8 @@
-<h1>New Participacao</h1>
-
-<%= render 'form', participacao: @participacao %>
-
-<%= link_to 'Back', participacoes_path %>
+<div class="card">
+  <div class="card-header d-flex justify-content-center">
+    Nova participação
+  </div>
+  <div class="card-body">
+    <%= render 'form', participacao: @participacao %>
+  </div>
+</div>

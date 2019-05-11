@@ -10,18 +10,26 @@
       </ul>
     </div>
   <% end %>
+  <%= hidden_field_tag 'participacao[user_id]', current_user.id %>
+  <%= hidden_field_tag 'participacao[bolao_id]', params[:bolao_id] %>
 
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
+  <div class="container">
+    <% @bolao.palpite.each do |palpite| %>
+      <div class="row">
+        <h5><%= palpite.pergunta %></h5>
+      </div>
+      <div class="row">
+        <% palpite.opcoes.each do |opcao| %>
+          <div class="form-group form-check">
+            <input type="<%= palpite.tipo %>" value="<%= opcao.id %>" id="<%= palpite.id %>_<%= opcao.id %>" name="escolhas[<%= palpite.id %>]" />
+            <label for="<%= palpite.id %>_<%= opcao.id %>"><%= opcao.valor %></label><br>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 
-  <div class="field">
-    <%= form.label :bolao_id %>
-    <%= form.text_field :bolao_id %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <div class="d-flex justify-content-center">
+    <%= form.submit 'Salvar', class: 'btn btn-success m-1' %>
   </div>
 <% end %>
